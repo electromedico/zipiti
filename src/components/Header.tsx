@@ -44,7 +44,7 @@ export default function Header(props: HeaderProps) {
         sx={{ justifyContent: "space-between", overflowX: "auto" }}
       >
         {sections.map((section) => (
-          <RouterLink to={section.url}>
+          <RouterLink to={section.url} key={section.title}>
             <Link
               color="inherit"
               noWrap
