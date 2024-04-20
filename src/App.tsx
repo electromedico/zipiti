@@ -1,10 +1,10 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Blog from "./components/Blog";
+import MainApp from "./components/MainApp";
 
 function App() {
-  return <Blog />;
+  return <MainApp />;
 }
 
 export default App;
