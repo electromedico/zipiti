@@ -1,47 +1,54 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import AppBar from '../components/AppBar';
-import Toolbar from '../components/Toolbar';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import AppBar from "../components/AppBar";
+import Toolbar from "../components/Toolbar";
+import { Link as RouterLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const rightLink = {
   fontSize: 16,
-  color: 'common.white',
+  color: "common.white",
   ml: 3,
 };
 
 function AppAppBar() {
+  const { t, i18n } = useTranslation();
+
   return (
     <div>
       <AppBar position="fixed">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
           <Box sx={{ flex: 1 }} />
           <Link
+            to={"/"}
             variant="h6"
             underline="none"
             color="inherit"
-            href="/premium-themes/onepirate/"
             sx={{ fontSize: 24 }}
+            component={RouterLink}
           >
-            {'onepirate'}
+            {t("home.appbar.zipitiPark")}
           </Link>
-          <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+          <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
             <Link
+              to={"/pricing"}
               color="inherit"
               variant="h6"
               underline="none"
-              href="/premium-themes/onepirate/sign-in/"
               sx={rightLink}
+              component={RouterLink}
             >
-              {'Sign In'}
+              {t("home.appbar.pricing")}
             </Link>
             <Link
+              to="/book"
               variant="h6"
               underline="none"
-              href="/premium-themes/onepirate/sign-up/"
-              sx={{ ...rightLink, color: 'secondary.main' }}
+              component={RouterLink}
+              sx={{ ...rightLink, color: "secondary.main" }}
             >
-              {'Sign Up'}
+               {t("home.appbar.book")}
             </Link>
           </Box>
         </Toolbar>
