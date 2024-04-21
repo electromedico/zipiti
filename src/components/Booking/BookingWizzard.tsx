@@ -1,11 +1,39 @@
 import React, { useState } from "react";
-import { Grid, Pagination, Container, Box } from "@mui/material";
+import {
+  Grid,
+  useMediaQuery,
+  Step,
+  StepContent,
+  StepLabel,
+  Typography,
+} from "@mui/material";
+import theme from "../front/modules/theme";
+import { BookingStepper } from "./BookingStepper";
+import Paper from "../front/modules/components/Paper";
+import MobileBookingWizard from "./mobile/MobileBookingWizard";
 
 interface BookingWizardProps {
   // Add props typing here if needed
 }
 
+const steps = [
+  {
+    label: "Step 1",
+    description: "This is step 1",
+  },
+  {
+    label: "Step 2",
+    description: "This is step 2",
+  },
+  {
+    label: "Step 3",
+    description: "This is step 3",
+  },
+];
+
 const BookingWizard: React.FC<BookingWizardProps> = () => {
+  const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
+
   const [page, setPage] = useState(1);
 
   const handlePageChange = (
@@ -15,23 +43,22 @@ const BookingWizard: React.FC<BookingWizardProps> = () => {
     setPage(value);
   };
 
-  return (
-    <Container maxWidth="lg">
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={3}>
-          <Box mb={3}>
-            <Pagination
-              count={3} // number of steps
-              page={page}
-              onChange={handlePageChange}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={9}>
-          {/* Step content goes here */}
-        </Grid>
+  return isSmUp ? (
+    <Grid container spacing={3} mt={6} mb={3}>
+      <Grid item md={2} />
+      <Grid item md={2} m={2}>
+        <Paper elevation={2} background={"light"} padding={true}>
+          <BookingStepper />
+        </Paper>
       </Grid>
-    </Container>
+      <Grid item md={6} m={2}>
+        <Paper elevation={2} background={"light"} padding={true}>
+          <BookingStepper />
+        </Paper>
+      </Grid>
+    </Grid>
+  ) : (
+    <MobileBookingWizard />
   );
 };
 

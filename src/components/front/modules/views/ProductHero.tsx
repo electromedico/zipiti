@@ -1,28 +1,29 @@
-import * as React from 'react';
-import Button from '../components/Button';
-import Typography from '../components/Typography';
-import ProductHeroLayout from './ProductHeroLayout';
-
-const backgroundImage =
-  'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400';
+import * as React from "react";
+import Button from "../components/Button";
+import Typography from "../components/Typography";
+import ProductHeroLayout from "./ProductHeroLayout";
+import { useTranslation } from "react-i18next";
+import background from "../../../../resources/background.jpeg";
 
 export default function ProductHero() {
+  const { t, i18n } = useTranslation();
+
   return (
     <ProductHeroLayout
       sxBackground={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundColor: '#7fc7d9', // Average color of the background image.
-        backgroundPosition: 'center',
+        backgroundImage: `url(${background})`,
+        backgroundColor: "#7fc7d9", // Average color of the background image.
+        backgroundPosition: "center",
       }}
     >
       {/* Increase the network loading priority of the background image. */}
       <img
-        style={{ display: 'none' }}
-        src={backgroundImage}
+        style={{ display: "none" }}
+        src={background}
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h2" marked="center">
-        Upgrade your Sundays
+        {t("home.productHero.welcome")}
       </Typography>
       <Typography
         color="inherit"
